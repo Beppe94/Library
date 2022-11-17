@@ -13,7 +13,6 @@ class Book {
 let myLibrary = [];
 
 function displayBooks(book) {
-    
     const cards = document.createElement('div')
     cards.className = 'cards'
     cards.setAttribute('id','bookId')
@@ -29,8 +28,11 @@ function displayBooks(book) {
     cards.appendChild(title)
     cards.appendChild(author)
     cards.appendChild(pages)
-    remove(cards)
+
     elements.appendChild(cards)
+
+    remove(cards)
+    checkBox(cards)
 }
 
 function remove(list) {
@@ -39,6 +41,10 @@ function remove(list) {
     delBtn.innerText = 'Remove'
     list.appendChild(delBtn)
     return list;
+}
+
+for(let i = 0; i < child.length; i++) {
+    remove(child[i])
 }
 
 elements.addEventListener('click', (event) => {
@@ -51,27 +57,47 @@ elements.addEventListener('click', (event) => {
     }
 })
 
+function checkBox(list) {
+    const check = document.createElement('label')
+    check.innerText = 'Have you read it?'
+    check.setAttribute('id', 'check')
+
+    const checkInput = document.createElement('input')
+    checkInput.setAttribute('type', 'checkbox')
+    checkInput.setAttribute('id', 'check')
+    list.appendChild(check)
+    list.appendChild(checkInput)
+    return list
+}
+
 for(let i = 0; i < child.length; i++) {
-    remove(child[i])
+    checkBox(child[i]);
 }
 
 function getInputBook() {
     const title = document.getElementById('title').value
     const author = document.getElementById('author').value
     const pages = document.getElementById('pages').value
-    return new Book(title, author, pages)
+    
+    if(title != '' && author != '' && pages != '') {
+        return new Book(title, author, pages);
+    } else {
+        alert('Invalid inputs')
+    }
 }
-
 
 function submitForm(e) {
     e.preventDefault()
-    const newBook = getInputBook()
+    const newBook = getInputBook();
 
-    myLibrary.push(newBook)
+    if(newBook) {
+        myLibrary.push(newBook)
+    }
     displayBooks(newBook)
 
-    document.getElementById('bookForm').reset() 
+    document.getElementById('bookForm').reset()
 }
+
 
 addBtn.addEventListener('click', submitForm)
 
