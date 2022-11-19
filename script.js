@@ -38,7 +38,7 @@ function displayBooks(book) {
 function remove(list) {
     const delBtn = document.createElement('button');
     delBtn.setAttribute('class','delBtn')
-    delBtn.innerText = 'Remove'
+    delBtn.innerText = '🗑'
     list.appendChild(delBtn)
     return list;
 }
@@ -58,6 +58,7 @@ elements.addEventListener('click', (event) => {
 })
 
 function checkBox(list) {
+    const divBox = document.createElement('div')
     const check = document.createElement('label')
     check.innerText = 'Have you read it?'
     check.setAttribute('id', 'check')
@@ -65,8 +66,9 @@ function checkBox(list) {
     const checkInput = document.createElement('input')
     checkInput.setAttribute('type', 'checkbox')
     checkInput.setAttribute('id', 'check')
-    list.appendChild(check)
-    list.appendChild(checkInput)
+    divBox.appendChild(check)
+    divBox.appendChild(checkInput)
+    list.appendChild(divBox)
     return list
 }
 
@@ -90,9 +92,8 @@ function submitForm(e) {
     e.preventDefault()
     const newBook = getInputBook();
 
-    if(newBook) {
-        myLibrary.push(newBook)
-    }
+    myLibrary.push(newBook)
+    
     displayBooks(newBook)
 
     document.getElementById('bookForm').reset()
