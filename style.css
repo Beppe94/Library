@@ -16,6 +16,7 @@ header {
     position: absolute;
     display: flex;
     align-items: center;
+    gap: 20px;
     min-width: 100%;
     background: linear-gradient(to right, #253546, #acb1c2);
     height: 10%;
@@ -26,12 +27,64 @@ header h1 {
     padding-left: 10px;
 }
 
+.square {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background: none;
+    position: relative;
+    scale: .9;
+    transition: .3s;
+}
+
+.square::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  height: 9px;
+  margin-top: -5px;
+  top: 50%;
+  left: 10px;
+  right: 10px;
+  z-index: 9;
+}
+
+.square::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  width: 9px;
+  margin-left: -5px;
+  left: 50%;
+  top: 10px;
+  bottom: 10px;
+  z-index: 9;
+}
+
+.square:hover {
+    box-shadow: 0 0 15px #fefefe;
+    scale: 1;
+}
+
 .main {
     padding-top: 6px;
     padding-bottom: 15px;
     min-width: 100%;
     background: #504d4d;
     margin-top: 10px;
+}
+
+.button {
+    color: white;
+    --b: 4px;
+    width: 40px;
+    border: 10px solid #000;
+    background: conic-gradient(from 90deg at var(--b) var(--b),#000 90deg,#fff 0) 
+    calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+    calc(50%  + var(--b))   calc(50%  + var(--b));
+    display: inline-block;
 }
 
 .grid {
