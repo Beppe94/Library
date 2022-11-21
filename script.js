@@ -1,5 +1,8 @@
 const elements = document.getElementById('books');
 const addBtn = document.getElementById('addBtn');
+const square = document.querySelector('.square');
+const popUp = document.querySelector('.popup');
+const focusTitle = document.getElementById('title');
 const child = elements.children;
 
 class Book {
@@ -31,14 +34,15 @@ function displayBooks(book) {
 
     elements.appendChild(cards)
 
-    remove(cards)
     checkBox(cards)
+    remove(cards)
 }
 
 function remove(list) {
     const delBtn = document.createElement('button');
     delBtn.setAttribute('class','delBtn')
     delBtn.innerText = '🗑'
+    delBtn.style.color = 'black'
     list.appendChild(delBtn)
     return list;
 }
@@ -58,14 +62,17 @@ elements.addEventListener('click', (event) => {
 })
 
 function checkBox(list) {
-    const divBox = document.createElement('div')
-    const check = document.createElement('label')
+    const divBox = document.createElement('div');
+    divBox.className = 'label-div'
+    const check = document.createElement('label');
     check.innerText = 'Have you read it?'
     check.setAttribute('id', 'check')
 
-    const checkInput = document.createElement('input')
+    
+    const checkInput = document.createElement('input');
     checkInput.setAttribute('type', 'checkbox')
-    checkInput.setAttribute('id', 'check')
+    checkInput.setAttribute('id', 'checks')
+    checkInput.setAttribute('onclick', 'checkBackground()')
     divBox.appendChild(check)
     divBox.appendChild(checkInput)
     list.appendChild(divBox)
@@ -80,7 +87,7 @@ function getInputBook() {
     const title = document.getElementById('title').value
     const author = document.getElementById('author').value
     const pages = document.getElementById('pages').value
-    
+
     if(title != '' && author != '' && pages != '') {
         return new Book(title, author, pages);
     } else {
@@ -97,9 +104,34 @@ function submitForm(e) {
     displayBooks(newBook)
 
     document.getElementById('bookForm').reset()
+    closePopup()
 }
 
+function popup() {
+    popUp.classList.add('open-popup');
+    mainFocus()
+}
 
+function closePopup() {    
+    popUp.classList.remove('open-popup');
+}
+
+function mainFocus() {
+    focusTitle.focus()
+}
+
+function checkBackground() {
+    const checkLabel = document.querySelector('.label-div')
+    const checkInput = document.getElementById('checks')
+
+    if(checkInput.checked == true) {
+        checkLabel.style.background = 'green'
+    } else {
+        checkLabel.style.background = 'none'
+    }
+}
+
+square.addEventListener('click', popup)
 addBtn.addEventListener('click', submitForm)
 
 

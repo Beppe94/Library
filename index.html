@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>My Library</h1>
-        <button class="square"></button>
+        <button class="square" id="squareBtn"></button>
     </header>
     
     <div class="main">
@@ -20,12 +20,12 @@
     </div>
     
     <div>
-        <form id="bookForm">
+        <form class="popup" id="bookForm">
             <h2>Add New Book</h2>
             <input type="text"  id="title" placeholder="Title" required>
             <input type="text"  id="author" placeholder="Author" required>
             <input type="number"  id="pages" placeholder="Pages" required>
-            <button type="submit" id="addBtn"></button>
+            <button type="submit" id="addBtn">New Book</button>
         </form>
     </div>
 </body>
