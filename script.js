@@ -134,21 +134,16 @@ function changeColor() {
     console.log(val)
 }
 
+function myBook() {
+    
+    let myBook = new Book('The Last Wish', 'Andrzej Sapkowski', 359);
 
+    myLibrary.push(myBook);
 
-/*
-elements.addEventListener('click', (event) => {
-    const button = event.target
-    if(event.target.tagName === 'BUTTON') {
-        button.innerText = 'Not Read'
-        button.style.background = 'salmon'
-        console.log(button.innerText.value)
-    } else if(button.value === 'Not Read') {
-        button.innerText = 'Read';
-        button.style.background = 'lightgreen';
-    }
-});*/
+    displayBooks(myBook);
+}
 
+myBook()
 square.addEventListener('click', popup)
 addBtn.addEventListener('click', submitForm)
 
